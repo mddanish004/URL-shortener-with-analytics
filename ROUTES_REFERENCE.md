@@ -7,8 +7,16 @@ This document lists all routes in the URL Shortener application with their corre
 ### 1. Landing Page
 - **Route:** `/`
 - **File:** `app/src/app/page.tsx`
-- **Purpose:** Landing page for unauthenticated users
-- **Redirect:** Redirects to `/home` if user is signed in
+- **Purpose:** Marketing landing page for unauthenticated users
+- **Features:**
+  - Hero section with gradient background
+  - 4 key features showcase (URL Shortening, Analytics, Custom Aliases, Security)
+  - "Get Started" CTA button
+- **Redirect:** 
+  - If signed in → redirects to `/home`
+  - If not signed in → "Get Started" button goes to `/sign-in`
+- **Component Type:** Server Component
+- **Design:** Purple gradient background with glass-morphism card
 
 ### 2. Sign In
 - **Route:** `/sign-in`
@@ -187,10 +195,13 @@ This document lists all routes in the URL Shortener application with their corre
 
 ### Pages to Design
 
-1. **Landing Page** (`app/src/app/page.tsx`)
-   - Hero section
-   - Features showcase
-   - Call to action (Sign Up/Sign In)
+1. **Landing Page** (`app/src/app/page.tsx`) ✅ DESIGNED
+   - ✓ Hero section with gradient background
+   - ✓ 4 key features in glass-morphism card
+   - ✓ "Get Started" CTA button linking to sign-in
+   - ✓ Responsive layout
+   - **Current Design:** Purple gradient (#667eea to #764ba2) with white frosted glass card
+   - **Note:** Can be enhanced with animations, better typography, or component library
 
 2. **Home Page** (`app/src/app/home/page.tsx`)
    - Clean, focused layout

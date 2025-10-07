@@ -2,15 +2,15 @@
 
 ## All Page Files to Design
 
-| Route | File Path | Type | Description |
-|-------|-----------|------|-------------|
-| `/` | `app/src/app/page.tsx` | Public | Landing page |
-| `/sign-in` | `app/src/app/(auth)/sign-in/[[...sign-in]]/page.tsx` | Public | Login (Clerk) |
-| `/sign-up` | `app/src/app/(auth)/sign-up/[[...sign-up]]/page.tsx` | Public | Registration (Clerk) |
-| `/home` | `app/src/app/home/page.tsx` | Protected | Quick shorten + overview |
-| `/dashboard` | `app/src/app/dashboard/page.tsx` | Protected | Dashboard overview |
-| `/dashboard/links` | `app/src/app/dashboard/links/page.tsx` | Protected | All links list |
-| `/dashboard/links/:id` | `app/src/app/dashboard/links/[id]/page.tsx` | Protected | Link detail + analytics |
+| Route | File Path | Type | Description | Status |
+|-------|-----------|------|-------------|--------|
+| `/` | `app/src/app/page.tsx` | Public | Landing page (marketing) | ✅ Designed |
+| `/sign-in` | `app/src/app/(auth)/sign-in/[[...sign-in]]/page.tsx` | Public | Login (Clerk) | 🎨 Needs Design |
+| `/sign-up` | `app/src/app/(auth)/sign-up/[[...sign-up]]/page.tsx` | Public | Registration (Clerk) | 🎨 Needs Design |
+| `/home` | `app/src/app/home/page.tsx` | Protected | Quick shorten + overview | 🎨 Needs Design |
+| `/dashboard` | `app/src/app/dashboard/page.tsx` | Protected | Dashboard overview | 🎨 Needs Design |
+| `/dashboard/links` | `app/src/app/dashboard/links/page.tsx` | Protected | All links list | 🎨 Needs Design |
+| `/dashboard/links/:id` | `app/src/app/dashboard/links/[id]/page.tsx` | Protected | Link detail + analytics | 🎨 Needs Design |
 
 ## Layout Files
 
@@ -39,7 +39,9 @@
 | GET | `/:shortCode` | `app/src/app/[shortCode]/route.ts` |
 
 ## File Count
-- **7 pages** to design (UI)
+- **7 pages** total
+  - **1 designed** ✅ (Landing page)
+  - **6 need design** 🎨 (Sign-in, Sign-up, Home, Dashboard, My Links, Link Detail)
 - **2 layouts** to style
 - **1 shared component**
 - **8 API routes** (no UI needed)
