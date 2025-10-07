@@ -47,7 +47,13 @@ export async function GET(
   try {
     const ipHash = sha256(getClientIp(req.headers));
     await db.insert(clicks).values({ urlId: target.id, ipHash });
-  } catch {}
+    console.log(`[CLICK RECORDED] URL ID: ${target.id}, IP Hash: ${ipHash.substring(0, 8)}...`);
+  } catch (err) {
+    console.error(`[CLICK ERROR] Failed to record click for URL ID ${target.id}:`, err);
+  }
 
   return NextResponse.redirect(target.originalUrl, { status: 302 });
 }
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;

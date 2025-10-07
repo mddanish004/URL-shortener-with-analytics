@@ -29,7 +29,7 @@ export default function UrlShortenForm({ onSuccess }: UrlShortenFormProps) {
         setError(typeof data.error === "string" ? data.error : "Failed to shorten URL");
       } else {
         setResult(data.shortUrl);
-        onSuccess?.(); // Call the success callback to refresh data
+        onSuccess?.();
       }
     } catch {
       setError("Network error");

@@ -19,9 +19,15 @@ export async function GET(req: Request, ctx: { params: Promise<{ id: string }> }
     where id = ${id}
   `);
   
-  const urlData = (urlRow as { rows?: Array<{ id: string; user_id: string; original_url: string; short_code: string; is_active: boolean }> }).rows?.[0];
+  const urlData = (urlRow as unknown as Array<{ id: string; user_id: string; original_url: string; short_code: string; is_active: boolean }>)[0];
+  
+  console.log('[ANALYTICS] URL data:', urlData, 'Auth userId:', userId);
+  
   if (!urlData) return NextResponse.json({ error: "Not Found" }, { status: 404 });
-  if (urlData.user_id !== userId) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  if (urlData.user_id !== userId) {
+    console.log('[ANALYTICS] FORBIDDEN: URL owner:', urlData.user_id, 'vs Auth user:', userId);
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
 
   const startDate = startDateParam ? new Date(startDateParam) : undefined;
   const endDate = endDateParam ? new Date(endDateParam) : undefined;
@@ -45,11 +51,16 @@ export async function GET(req: Request, ctx: { params: Promise<{ id: string }> }
     order by day asc
   `);
 
-  const totalsResult = totals as { rows?: Array<{ total: number }> };
-  const seriesResult = series as { rows?: Array<{ day: string; count: number }> };
+  const total = (totals as unknown as Array<{ total: number }>)[0]?.total ?? 0;
+  const seriesData = series as unknown as Array<{ day: string; count: number }>;
+  
+  console.log(`[ANALYTICS] URL ID: ${id}, Total: ${total}, Series:`, seriesData);
   
   return NextResponse.json({
-    total: totalsResult.rows ? totalsResult.rows[0]?.total : (totals as unknown as Array<{ total: number }>)[0]?.total,
-    series: seriesResult.rows ?? series,
+    total,
+    series: seriesData,
   });
 }
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;

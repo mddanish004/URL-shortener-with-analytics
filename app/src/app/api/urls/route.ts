@@ -116,7 +116,7 @@ export async function GET(req: Request) {
   const page = Math.max(1, parseInt(urlObj.searchParams.get("page") || "1", 10));
   const limit = Math.min(100, Math.max(1, parseInt(urlObj.searchParams.get("limit") || "10", 10)));
   const search = (urlObj.searchParams.get("search") || "").trim();
-  const sortBy = urlObj.searchParams.get("sortBy") || "created_desc"; // created_desc | created_asc | clicks_desc | clicks_asc
+  const sortBy = urlObj.searchParams.get("sortBy") || "created_desc";
 
   const { userId } = await auth();
   if (!userId) {
